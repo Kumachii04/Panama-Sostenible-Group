@@ -45,11 +45,13 @@ $siteConfig = [
     <link rel="preload" href="css/style.css" as="style">
     <link rel="preload" href="css/components/header.css" as="style">
     <link rel="preload" href="assets/icons/bluesky.svg" as="image">
+    <link rel="preload" href="../../assets/icons/bluesky.svg" as="image">
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/components/header.css">
+    <link rel="stylesheet" href="css/servicios.css">
 
     <!-- Favicon -->
     <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
@@ -71,6 +73,7 @@ $siteConfig = [
         "email": "<?php echo $siteConfig['email']; ?>"
     }
     </script>
+
 </head>
 
 <body>
@@ -110,7 +113,7 @@ $siteConfig = [
                         target="_blank" rel="noopener noreferrer">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
                         </svg>
                     </a>
                     <a href="https://twitter.com" class="social-icon" aria-label="Síguenos en Twitter" target="_blank"
@@ -121,7 +124,8 @@ $siteConfig = [
                         </svg>
                     </a>
                 </div>
-                <div class="language-selector" role="button" aria-label="Selector de idioma" tabindex="0">
+                <div class="language-selector" role="button" aria-label="Selector de idioma" tabindex="0"
+                    id="langSelector">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
                         <path
@@ -143,12 +147,12 @@ $siteConfig = [
                     <a href="index.php" class="logo"
                         aria-label="Página de inicio - <?php echo htmlspecialchars($siteConfig['site_name']); ?>">
                         <div class="logo-wrapper">
-                            <img src="assets/icons/bluesky.svg" alt="" class="logo-img" width="40" height="40">
+                            <img src="../../assets/icons/bluesky.svg" alt="" class=" logo-img" width="40" height="40">
                             <div class="logo-badge" aria-hidden="true">ECO</div>
                         </div>
                         <div class="logo-text">
                             <strong><?php echo htmlspecialchars($siteConfig['site_name']); ?></strong>
-                            <small>Turismo Responsable</small>
+                            <small>Turismo y Desarrollo Responsable</small>
                         </div>
                     </a>
                 </div>
@@ -157,8 +161,8 @@ $siteConfig = [
                 <div class="nav-center">
                     <ul class="nav-menu" role="menubar">
                         <li class="nav-item" role="none">
-                            <a href="index.php" class="nav-link <?php echo $currentPage === 'index' ? 'active' : ''; ?>"
-                                role="menuitem"
+                            <a href="../../Index.php"
+                                class="nav-link <?php echo $currentPage === 'index' ? 'active' : ''; ?>" role="menuitem"
                                 aria-current="<?php echo $currentPage === 'index' ? 'page' : 'false'; ?>">
                                 Inicio
                             </a>
@@ -249,7 +253,7 @@ $siteConfig = [
                     <?php if($isLoggedIn): ?>
                     <!-- Notifications -->
                     <div class="notifications-btn">
-                        <button class="icon-btn" aria-label="Notificaciones" aria-expanded="false">
+                        <button class="icon-btn" aria-label="Notificaciones" aria-expanded="false" id="notifBtn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -424,7 +428,7 @@ $siteConfig = [
             <?php endif; ?>
 
             <nav class="drawer-nav" aria-label="Navegación móvil">
-                <a href="index.php" class="drawer-link <?php echo $currentPage === 'index' ? 'active' : ''; ?>"
+                <a href="../../Index.php" class="drawer-link <?php echo $currentPage === 'index' ? 'active' : ''; ?>"
                     aria-current="<?php echo $currentPage === 'index' ? 'page' : 'false'; ?>">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2" />
@@ -501,10 +505,255 @@ $siteConfig = [
 
     <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true" tabindex="-1"></div>
 
-    <!-- Search Modal (se puede agregar después) -->
+    <!-- Search Modal -->
     <div id="searchModal" class="search-modal" aria-hidden="true" hidden>
         <!-- Contenido del modal de búsqueda -->
     </div>
+
+    <script>
+    // Script mejorado con animaciones interactivas
+    document.addEventListener('DOMContentLoaded', function() {
+        const topBar = document.getElementById('topBar');
+        const mainHeader = document.getElementById('mainHeader');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerClose = document.getElementById('drawerClose');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const searchBtn = document.getElementById('searchBtn');
+        const langSelector = document.getElementById('langSelector');
+
+        let lastScroll = 0;
+
+        // Efecto scroll en header
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            // Agregar clase scrolled al header
+            if (currentScroll > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+
+            // Ocultar top bar al hacer scroll
+            if (currentScroll > 100) {
+                topBar.classList.add('hidden');
+            } else {
+                topBar.classList.remove('hidden');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+                mobileToggle.setAttribute('aria-expanded', !isExpanded);
+                mobileToggle.classList.toggle('active');
+                mobileDrawer.classList.toggle('active');
+                mobileDrawer.hidden = isExpanded;
+                drawerOverlay.classList.toggle('active');
+                document.body.style.overflow = isExpanded ? '' : 'hidden';
+            });
+        }
+
+        // Cerrar drawer
+        if (drawerClose) {
+            drawerClose.addEventListener('click', closeMobileMenu);
+        }
+
+        if (drawerOverlay) {
+            drawerOverlay.addEventListener('click', closeMobileMenu);
+        }
+
+        function closeMobileMenu() {
+            if (mobileToggle) {
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                mobileToggle.classList.remove('active');
+            }
+            if (mobileDrawer) {
+                mobileDrawer.classList.remove('active');
+                mobileDrawer.hidden = true;
+            }
+            if (drawerOverlay) {
+                drawerOverlay.classList.remove('active');
+            }
+            document.body.style.overflow = '';
+        }
+
+        // Cambiar idioma
+        if (langSelector) {
+            langSelector.addEventListener('click', function() {
+                const span = this.querySelector('span');
+                span.textContent = span.textContent === 'ES' ? 'EN' : 'ES';
+            });
+        }
+
+        // Search button
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+                // Aquí implementar modal de búsqueda
+                console.log('Abrir búsqueda');
+            });
+        }
+
+        // Notifications
+        const notifBtn = document.getElementById('notifBtn');
+        if (notifBtn) {
+            notifBtn.addEventListener('click', function() {
+                console.log('Ver notificaciones');
+            });
+        }
+
+        // Mega menu accessibility
+        const megaMenuItems = document.querySelectorAll('.has-mega-menu');
+        megaMenuItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+
+            item.addEventListener('mouseenter', () => {
+                if (link) link.setAttribute('aria-expanded', 'true');
+            });
+
+            item.addEventListener('mouseleave', () => {
+                if (link) link.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // User menu accessibility
+        const userMenu = document.querySelector('.user-menu');
+        const userMenuBtn = document.getElementById('userMenuBtn');
+
+        if (userMenu && userMenuBtn) {
+            userMenu.addEventListener('mouseenter', () => {
+                userMenuBtn.setAttribute('aria-expanded', 'true');
+            });
+
+            userMenu.addEventListener('mouseleave', () => {
+                userMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        // Ripple effect en botones
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255,255,255,0.5);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+
+            button.style.position = 'relative';
+            button.style.overflow = 'hidden';
+            button.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Agregar ripple a todos los botones
+        document.querySelectorAll('button, .btn-solid, .btn-text').forEach(btn => {
+            btn.addEventListener('click', createRipple);
+        });
+
+        // Smooth scroll para anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Parallax effect en logo
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const logoImg = document.querySelector('.logo-img');
+            if (logoImg && scrolled < 500) {
+                const parallax = scrolled * 0.1;
+                logoImg.style.transform = `translateY(${parallax}px) rotate(${scrolled * 0.05}deg)`;
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            // ESC para cerrar mobile menu
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // Trap focus en mobile menu cuando está abierto
+        if (mobileDrawer) {
+            mobileDrawer.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    const focusableElements = mobileDrawer.querySelectorAll(
+                        'a[href], button, [tabindex]:not([tabindex="-1"])'
+                    );
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            });
+        }
+
+        // Preload images on hover (mega menu)
+        document.querySelectorAll('.has-mega-menu').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const images = item.querySelectorAll('img[loading="lazy"]');
+                images.forEach(img => {
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                });
+            });
+        });
+
+        // Performance: Debounce scroll
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                // Acciones adicionales después del scroll
+            }, 150);
+        }, {
+            passive: true
+        });
+
+        console.log('🌿 Header interactivo cargado - Panamá Sostenible');
+    });
+    </script>
 
     <script src="js/menu.js" defer></script>
 
