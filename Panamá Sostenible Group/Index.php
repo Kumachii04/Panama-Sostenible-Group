@@ -1,5 +1,5 @@
 <?php
-include 'includes/database.php';
+include 'config/database.php';
 include 'includes/functions.php';
 
 $database = new Database();
@@ -58,7 +58,9 @@ $serviciosDestacados = getServiciosDestacados($conn);
                     <div class="categoria-content">
                         <h3><?= htmlspecialchars($categoria['nombre']) ?></h3>
                         <p><?= htmlspecialchars($categoria['descripcion']) ?></p>
-                        <a href="servicios.php?categoria=<?= $categoria['id'] ?>" class="btn-explorar">Explorar</a>
+                        <a href="pages/servicios/servicios.php?categoria=<?= $categoria['id'] ?>" class="btn-explorar">
+                            Explorar
+                        </a>
                     </div>
                 </div>
                 <?php endforeach; ?>
